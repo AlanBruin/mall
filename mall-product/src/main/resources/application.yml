@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: root
+    password: zhengshu11
+    url: jdbc:mysql://123.57.51.104:3306/mall_pms
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: product
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 123.57.51.104:8848
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto

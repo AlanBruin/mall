@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: root
+    password: zhengshu11
+    url: jdbc:mysql://1.116.28.38:8848:3306/mall_ums
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: member
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.116.28.38:8848
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+server:
+  port: 9000

@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  mysql-db:
+    # 指定容器的名称
+    container_name: mysql
+    # 指定镜像和版本
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
+    volumes:
+      # 挂载数据目录
+      - "${MYSQL_DIR}/data:/var/lib/mysql"
+      - "${MYSQL_DIR}/config:/etc/mysql"
+      - "${MYSQL_DIR}/log:/var/log/mysql"
+      - "${MYSQL_DIR}/mysql-files:/var/lib/mysql-files"
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "${REDIS_DIR}/data:/data"
+      # docker 创建的是目录，需要手动创建文件
+      - "${REDIS_DIR}/conf/redis.conf:/etc/redis/redis.conf"
+    #容器运行后启动 redis 的命令
+    command: /bin/bash -c "redis-server /etc/redis/redis.conf"
+
+  nacos-server:
+    container_name: nacos
+    image: nacos/nacos-server
+    restart: always
+    ports:
+      - "8848:8848"
+    environment:
+      MODE: standalone
+    volumes:
+      # docker 创建的是目录，需要手动创建文件
+      - "${NACOS_DIR}/init.d/custom.properties:/home/nacos/init.d/custom.properties"
+      - "${NACOS_DIR}/logs:/home/nacos/logs"
