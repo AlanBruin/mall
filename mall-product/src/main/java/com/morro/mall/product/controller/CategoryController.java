@@ -1,6 +1,7 @@
 package com.morro.mall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,17 @@ public class CategoryController {
         return R.ok().put("page", page);
     }
 
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/list/tree")
+    //@RequiresPermissions("product:category:list")
+    public R listTree(){
+        List<CategoryEntity> listWithTree = categoryService.listWithTree();
+
+        return R.ok().put("page", listWithTree);
+    }
 
     /**
      * 信息
