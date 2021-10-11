@@ -10,12 +10,20 @@ spring:
           uri: https://new.qq.com
           predicates:
             - Query=url,qq
-    #        - id: admin_route
-    #          uri: lb://renren-fast
-    #          predicates:
-    #            - Path=/api/**
-    #          filters:
-    #            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /renren-fast/$\{segment}
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedHeader: "*"
+#            allowedMethods: "*"
+#            addAllowedOriginPattern: "*"
+#            allowCredentials: true
+#        add-to-simple-url-handler-mapping: true
     nacos:
       discovery:
         server-addr: 1.116.28.38:8848
