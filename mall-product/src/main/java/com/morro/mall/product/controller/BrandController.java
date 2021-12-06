@@ -1,20 +1,15 @@
 package com.morro.mall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.morro.mall.product.entity.BrandEntity;
-import com.morro.mall.product.service.BrandService;
 import com.morro.common.utils.PageUtils;
 import com.morro.common.utils.R;
+import com.morro.mall.product.entity.BrandEntity;
+import com.morro.mall.product.service.BrandService;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -27,7 +22,7 @@ import com.morro.common.utils.R;
 @RestController
 @RequestMapping("product/brand")
 public class BrandController {
-    @Autowired
+    @Resource
     private BrandService brandService;
 
     /**
@@ -58,7 +53,7 @@ public class BrandController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:brand:save")
-    public R save(@RequestBody BrandEntity brand){
+    public R save(@Valid @RequestBody BrandEntity brand){
 		brandService.save(brand);
 
         return R.ok();

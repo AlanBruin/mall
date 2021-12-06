@@ -2,10 +2,11 @@ package com.morro.mall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 品牌
@@ -27,10 +28,12 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 品牌名
 	 */
+	@NotBlank
 	private String name;
 	/**
 	 * 品牌logo地址
 	 */
+	@URL
 	private String logo;
 	/**
 	 * 介绍
